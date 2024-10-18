@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container, Logo, LogoutBtn} from '../index'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 function Header() {
@@ -11,9 +11,9 @@ function Header() {
   const navItems = [
     {
       name: 'Home',
-      slug: '/',
+      slug: "/",
       active: true
-    },
+    }, 
     {
       name: "Login",
       slug: "/login",
@@ -32,40 +32,43 @@ function Header() {
   {
       name: "Add Post",
       slug: "/add-post",
-      active: authStatus
-  }
+      active: authStatus,
+  },
   ]
 
+
   return (
-    <div className='py-3 shadow bg-gray-500'>
-      <Container>
-        <nav className='flex'>
-          <div className='mr-4'>
-            <Link to='/'>
-              <Logo width='70px'/>
-            </Link>
-          </div>
-          <ul className='flex ml-auto'>
-            {
-              navItems.map((item) => 
-              item.active ? (
-                <li key={item.name}>
-                  <button onClick={() => navigate(item.slug)}
-                  className='inline-block px-6 py-2 duration-200
-                   hover:bg-blue-100 rounded-full'>
-                  {item.name}</button>
-                </li>
-              ) : null
-              )}
-              {
-                authStatus && (
-                  <li><LogoutBtn /></li>
-                )
-              }
-          </ul>
-        </nav>
-      </Container>
-    </div>
+    <header className='py-4 shadow-lg bg-gray-100'>
+  <Container>
+    <nav className='flex items-center'>
+      <div className='mr-6'>
+        <Link to='/'>
+          <Logo width='210px' />
+        </Link>
+      </div>
+      <ul className='flex ml-auto space-x-4'>
+        {navItems.map((item) =>
+          item.active ? (
+            <li key={item.name}>
+              <button
+                onClick={() => navigate(item.slug)}
+                className='px-5 py-2 text-gray-800 bg-purple-200 hover:bg-purple-600 hover:text-white rounded-full transition duration-300 ease-in-out'
+              >
+                {item.name}
+              </button>
+            </li>
+          ) : null
+        )}
+        {authStatus && (
+          <li>
+            <LogoutBtn />
+          </li>
+        )}
+      </ul>
+    </nav>
+  </Container>
+</header>
+
   )
 }
 
